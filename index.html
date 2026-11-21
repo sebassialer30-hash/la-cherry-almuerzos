@@ -174,8 +174,8 @@ async function chooseClientWeek(){
  const {data:published,error}=await db.from('menus')
   .select('fecha,tipo,publicado')
   .eq('publicado',true)
-  .gte('fecha',weeks[0])
-  .lte('fecha',localDateAdd(weeks[weeks.length-1],4));
+  .gte('fecha',monday)
+  .lte('fecha',localDateAdd(nextMonday,4));
  if(error)throw error;
  const chosen=weeks.find(w=>DAYS.every((_,i)=>['Regular','Kids'].every(t=>
    (published||[]).some(m=>m.fecha===localDateAdd(w,i)&&m.tipo===t))));
